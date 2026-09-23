@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Rohit Bhai 🤎</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at center, #5b3b28 0%, #24160f 100%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Georgia, "Times New Roman", serif;
+}
+
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+.particle{
+    position:absolute;
+    color:#d8b28b;
+    font-size:18px;
+    opacity:0;
+    animation:floatUp 7s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes floatUp{
+
+    0%{
+        transform:translateY(100vh) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.7;
+    }
+
+    85%{
+        opacity:.7;
+    }
+
+    100%{
+        transform:translateY(-10vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   INTRO SCREEN
+========================= */
+
+.intro{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle,#765238,#24160f);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:100;
+    transition:1s;
+}
+
+.intro.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+.intro h1{
+    color:#f0d0a8;
+    font-size:28px;
+    text-align:center;
+    margin-bottom:12px;
+}
+
+.intro p{
+    color:#d8b895;
+    font-size:15px;
+    margin-bottom:30px;
+}
+
+.openBtn{
+    padding:13px 30px;
+    border:1px solid #d8b895;
+    border-radius:30px;
+    background:transparent;
+    color:#f1d5b1;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.openBtn:hover{
+    background:#d8b895;
+    color:#2d1b11;
+}
+
+
+/* =========================
+   LETTER WRAPPER
+========================= */
+
+.scene{
+    width:92%;
+    max-width:650px;
+    height:88vh;
+    perspective:1200px;
+    position:relative;
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.letter{
+    position:absolute;
+    width:100%;
+    height:100%;
+
+    background-image:url("paper.jpg");
+    background-size:cover;
+    background-position:center;
+
+    border-radius:4px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.65),
+        inset 0 0 40px rgba(60,30,10,.35);
+
+    transform-origin:bottom center;
+    transform:rotateX(90deg) scale(.8);
+    opacity:0;
+
+    transition:
+        transform 1.5s cubic-bezier(.2,.8,.2,1),
+        opacity 1s;
+
+    overflow:hidden;
+}
+
+.letter.show{
+    transform:rotateX(0deg) scale(1);
+    opacity:1;
+}
+
+
+/* =========================
+   PAPER DARK OVERLAY
+========================= */
+
+.letter::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(255,240,210,.10),
+            rgba(80,40,15,.08)
+        );
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   LETTER CONTENT
+========================= */
+
+.content{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    height:100%;
+
+    padding:
+        10%
+        9%
+        8%;
+
+    overflow-y:auto;
+
+    color:#3a2416;
+
+    text-align:center;
+}
+
+
+/* scrollbar */
+
+.content::-webkit-scrollbar{
+    width:4px;
+}
+
+.content::-webkit-scrollbar-thumb{
+    background:#765238;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.title{
+    font-size:30px;
+    margin-bottom:20px;
+
+    color:#4a2b19;
+
+    opacity:0;
+    transform:translateY(15px);
+
+    transition:1s;
+}
+
+.letter.show .title{
+    opacity:1;
+    transform:translateY(0);
+    transition-delay:1s;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    font-size:18px;
+    line-height:1.8;
+
+    font-weight:500;
+
+    opacity:0;
+    transform:translateY(20px);
+
+    transition:1.2s;
+}
+
+.letter.show .message{
+    opacity:1;
+    transform:translateY(0);
+    transition-delay:1.5s;
+}
+
+
+/* =========================
+   SPECIAL WORDS
+========================= */
+
+.highlight{
+    font-weight:bold;
+    color:#5a2e19;
+}
+
+.bigSorry{
+    font-size:22px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+
+/* =========================
+   SIGNATURE
+========================= */
+
+.signature{
+    margin-top:25px;
+
+    font-size:19px;
+    font-style:italic;
+
+    opacity:0;
+
+    transition:1s;
+}
+
+.letter.show .signature{
+    opacity:1;
+    transition-delay:3s;
+}
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.musicBox{
+    margin-top:28px;
+
+    opacity:0;
+    transform:translateY(15px);
+
+    transition:1s;
+}
+
+.letter.show .musicBox{
+    opacity:1;
+    transform:translateY(0);
+    transition-delay:3.5s;
+}
+
+.musicBtn{
+    border:none;
+
+    padding:13px 25px;
+
+    border-radius:30px;
+
+    background:#4b2c1a;
+
+    color:#f5dfc1;
+
+    font-family:Georgia,serif;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(50,20,5,.3);
+
+    transition:.3s;
+}
+
+.musicBtn:hover{
+    transform:scale(1.05);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .scene{
+        width:94%;
+        height:85vh;
+    }
+
+    .content{
+        padding:11% 8%;
+    }
+
+    .title{
+        font-size:25px;
+    }
+
+    .message{
+        font-size:16px;
+        line-height:1.75;
+    }
+
+    .bigSorry{
+        font-size:20px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     FLOATING PARTICLES
+========================= -->
+
+<div class="particle" style="left:8%;animation-delay:0s;">✦</div>
+<div class="particle" style="left:20%;animation-delay:2s;">♡</div>
+<div class="particle" style="left:35%;animation-delay:4s;">✧</div>
+<div class="particle" style="left:52%;animation-delay:1s;">♡</div>
+<div class="particle" style="left:68%;animation-delay:3s;">✦</div>
+<div class="particle" style="left:84%;animation-delay:5s;">♡</div>
+<div class="particle" style="left:94%;animation-delay:2.5s;">✧</div>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div class="intro" id="intro">
+
+    <h1>Ek chhota sa letter hai... 🤎</h1>
+
+    <p>Rohit bhai ke liye 🥺</p>
+
+    <button class="openBtn" onclick="openLetter()">
+        💌 Open Letter
+    </button>
+
+</div>
+
+
+<!-- =========================
+     LETTER
+========================= -->
+
+<div class="scene">
+
+    <div class="letter" id="letter">
+
+        <div class="content">
+
+            <div class="title">
+                Dear Rohit Bhai 🤎
+            </div>
+
+
+            <div class="message">
+
+                <p>
+                    <b>Sry yaar Rohit bhai 🥺🙏🏻</b>
+                </p>
+
+                <br>
+
+                <p>
+                    Aap bhi naraz ho gaye dosto se... 🥺
+                </p>
+
+                <p>
+                    Itna toh dosti mein samjha jata hai na...
+                    <span class="highlight">
+                        chor ke nahi jaya jata 🥹
+                    </span>
+                </p>
+
+                <br>
+
+                <p>
+                    Aur hamari taraf se aapko
+                </p>
+
+                <p class="bigSorry">
+                    BHT BHT SORRYYYY 🙏🏻🥺
+                </p>
+
+                <br>
+
+                <p>
+                    Maaf karo do cutu putu Rohit bhai 😭😂🤎
+                </p>
+
+                <br>
+
+                <p>
+                    Aap naraz ho jaoge toh
+                    <span class="highlight">
+                        shayari kaun sunayega aapko? 🥹😂
+                    </span>
+                </p>
+
+                <br>
+
+                <p>
+                    Chalo ab bas...
+                </p>
+
+                <p>
+                    <b>Kush ho jao bade bhai 🫶🏻🤎</b>
+                </p>
+
+                <br>
+
+                <p>
+                    Ab gussa chhodo...
+                    smile karo thoda sa 😭😂
+                </p>
+
+                <br>
+
+                <p>
+                    Dosti mein thodi nok-jhok hoti rehti hai,
+                    par apne log <b>chor ke nahi jaate</b> 🤎
+                </p>
+
+
+                <div class="signature">
+
+                    Once again...
+                    <br>
+
+                    <b>SOOO SORRYYY ROHIT BHAI 🥺🙏🏻🤎</b>
+
+                    <br><br>
+
+                    Ab maan bhi jao bade bhai 😭😂🫶🏻
+
+                </div>
+
+
+                <!-- MUSIC -->
+
+                <div class="musicBox">
+
+                    <button class="musicBtn" onclick="playMusic()">
+                        🎵 Ab ek song sun lo...
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SONG
+========================= -->
+
+<audio id="song" src="song.mp3"></audio>
+
+
+<script>
+
+/* =========================
+   OPEN LETTER
+========================= */
+
+function openLetter(){
+
+    const intro =
+        document.getElementById("intro");
+
+    const letter =
+        document.getElementById("letter");
+
+    intro.classList.add("hide");
+
+    setTimeout(function(){
+
+        letter.classList.add("show");
+
+    },500);
+
+}
+
+
+/* =========================
+   PLAY SONG
+========================= */
+
+function playMusic(){
+
+    const song =
+        document.getElementById("song");
+
+    song.play();
+
+}
+
+</script>
+
+
+</body>
+</html>
